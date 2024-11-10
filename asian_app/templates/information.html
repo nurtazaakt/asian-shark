@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Информация{% endblock %}
+
+{% block content %}
+<section class="jobs">
+    <div class="container">
+        <h2 class="title">Информация</h2>
+        <div class="jobs-list">
+            {% for info in infos %}
+                <div class="job-card">
+                    <div class="job-card__flex">
+                        <h3 class="job-card__title">{{ info.title }}</h3>
+                        <img src="{% static 'images/menu-list/liked.svg' %}" alt="liked icon">
+                    </div>                        
+                    <h4 class="job-card__date">{{ info.created_at|date:"d.m.Y" }}</h4>
+                    <div class="job-card__flex">
+                        <a href="{% url 'guide_job_page' pk=info.pk %}" class="dark-button">Подробнее</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>   
+</section>
+{% endblock %}

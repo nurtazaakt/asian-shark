@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header"> 
+        <div class="container">
+            <button class="menu-button" onclick="burgerMenuAction()">
+                <img src="{% static 'images/menu-list/menu.svg' %}" alt="home">
+            </button>
+        </div>
+    </header>
+    <div id="menu-list" style="display: none">
+        <div class="container">
+            <ul class="menu-list">
+                <li class="menu-list__item">
+                    <a href="{% url 'home_page' %}" class="menu-list__link">
+                        <img src="{% static 'images/menu-list/Vector.svg' %}" alt="vector">
+                        <span>Главная</span>
+                    </a>
+                </li>
+                <li class="menu-list__item">
+                    <a href="{% url 'categories_page' %}" class="menu-list__link">
+                        <img src="{% static 'images/menu-list/vacansy.svg' %}" alt="vacansy" >
+                        <span>Города</span>
+                    </a>
+                </li>
+                <li class="menu-list__item">
+                    <a href="{% url 'jobs_page' %}" class="menu-list__link">
+                        <img src="{% static 'images/menu-list/category-img.svg' %}" alt="category" >
+                        <span>Предложения</span>
+                    </a>
+                </li>
+                <li class="menu-list__item">
+                    <a href="{% url 'likes_page' %}" class="menu-list__link">
+                        <img src="{% static 'images/menu-list/liked.svg' %}" width="16px" height="16px" alt="category">
+                        <span>Избранное</span>
+                    </a>
+                </li>
+                {% if not user.is_authenticated %}
+                <li class="menu-list__item">
+                    <a href="{% url 'registration_page' %}" class="menu-list__link">
+                        <img src="{% static 'images/menu-list/signup.svg' %}" alt="signup" >
+                        <span>Регистрация</span>
+                    </a>
+                </li>
+                <li class="menu-list__item">
+                    <a href="{% url 'login_page' %}" class="menu-list__link">
+                        <img src="{% static 'images/menu-list/signin.svg' %}" alt="signin" >
+                        <span>Вход</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="menu-list__item">
+                    <a href="{% url 'logout_action' %}" class="menu-list__link">
+                        <img src="{% static 'images/menu-list/signout.svg' %}" alt="signout" >
+                        <span>{{ user.username }} : Выход</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <main>
+        {% block content %}
+        
+        {% endblock %}
+    </main>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

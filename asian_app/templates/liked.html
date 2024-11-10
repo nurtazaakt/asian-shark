@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Избранное{% endblock %}
+
+
+{% block content %}
+<section class="jobs">
+    <div class="container">
+        <h2 class="title">Избранное</h2>
+        <div class="jobs-list">
+            <div class="job-card">
+                <div class="job-card__flex">
+                    <h3 class="job-card__title">Перевозка мебели</h3>
+                    <img src="./static/images/menu-list/full-like.svg" alt="">
+                </div>                        
+                <h3 class="job-card__title">Алматы-Актау</h3>
+                <h3 class="job-card__title">2000&dollar;</h3>
+                <div class="job-card__flex">
+                    <a href="#" class="dark-button">Подробнее</a>
+                    <h3 class="job_card__company">Нурасыл АО</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>       
+{% endblock %}

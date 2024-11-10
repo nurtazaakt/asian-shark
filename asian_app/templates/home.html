@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+
+{% block content %}
+<section class="categories">
+    <div class="container">
+        <h2 class="title">Города</h2>
+        <div class="categories-list">
+            <a href="{% url 'categories_page' %}" class="category-item">Все Города</a>
+            {% for category in categories %}
+            <a href="{% url 'Joe_Baiden_page' slug=category.slug %}" class="category-item">{{ category.name }}</a>
+        {% endfor %}        
+        </div>
+    </div>
+</section>
+<section class="jobs">
+    <div class="container">
+        <h2 class="title">Актуальные предложения</h2>
+        <div class="jobs-list">
+            {% for job in jobs %}
+            <div class="job-card">
+                <div class="job-card__flex">
+                    <h3 class="job-card__title">{{ job.title }}</h3>
+                    <img src="{% static 'images/menu-list/liked.svg' %}" alt="liked icon">
+                </div>                        
+                <h3 class="job-card__title">Алматы-Актау</h3>
+                <h3 class="job-card__title">{{ job.salary }}&dollar;</h3>
+                <div class="job-card__flex">
+                    <a href="{% url 'job_infromations_page' pk=job.pk %}" class="dark-button">Подробнее</a>
+                    <h3 class="job_card__company">{{ job.company }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

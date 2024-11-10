@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ job.title }}{% endblock %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<section class="job-deatail">
+    <div class="container">
+        <h1 class="TRANS">{{ job.title }}</h1>
+        <h2 class="title">{{ job.company }}</h2>
+        <h3 class="job-detail__data"> Нужны Фуры:<span> 2</span></h3>
+        <h3 class="job-detail__data">Оклад:<span>{{ job.salary }}&dollar;</span></h3>
+        <p class="job-detail__content"><strong>Описание предложения:</strong>{{ job.description }}</p>
+        <div class="job-detail__skills">
+        <h3 class="job-detail__title">Нужно иметь при себе</h3>
+        <p>{{ job.skills }}</p>
+        </div>
+        <div class="job-detail__skills">
+            <h3 class="job-detail__title">Контакты</h3>
+            <ul class="job-detail__address">
+                <li>Адрес:{{ job.address }}</li>
+                <li>Телефон логиста:{{ job.phone }}</li>
+                <li>E-mail:{{ job.mail }} </li>
+            </ul>
+            </div>
+            <p class="job-detail_content"><strong>Дата публикации: </strong> {{ job.created_id|date:"d.m.Y" }}</p>
+    </div>
+</section>
+{% else %}
+<section class="access">
+    <div class="container">
+        <h1 class="title">Вы анонимный пользователь</h1>
+        <p class="dark-fer">Чтобы увидеть все предложения, Вам нужно пройти регистрацию</p>
+        <div class="access-action">
+            <a href="{% url 'registration_page' %}" class="dark-text">Регистрация</a>
+            <a href="{% url 'login_page' %}" class="dark-text">Войти</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

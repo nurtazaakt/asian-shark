@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+
+{% block content %}
+<section class="jobs">
+    <div class="container">
+        <h2 class="title">{{ category.name }}</h2>
+        <div class="jobs-list">
+            {% for job in jobs %}
+            <div class="job-card">
+                <div class="job-card__flex">
+                    <h3 class="job-card__title">{{ job.title }}</h3>
+                    <img src="{% static 'images/menu-list/liked.svg' %}" alt="liked icon">
+                </div>                        
+                <h3 class="job-card__title">Алматы-Актау</h3>
+                <h3 class="job-card__title">{{ job.salary }}&dollar;</h3>
+                <div class="job-card__flex">
+                    <a href="{% url 'job_infromations_page' pk=job.pk %}" class="dark-button">Подробнее</a>
+                    <h3 class="job_card__company">{{ job.company }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

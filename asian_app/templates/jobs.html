@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Все Вакансии{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<section class="jobs">
+    <div class="container">
+        <h2 class="title">Все Предложения</h2>
+        <div class="jobs-list">
+            {% for job in jobs %}
+            <div class="job-card">
+                <div class="job-card__flex">
+                    <h3 class="job-card__title">{{ job.title }}</h3>
+                    <img src="{% static 'images/menu-list/liked.svg' %}" alt="liked icon">
+                </div>                        
+                <h3 class="job-card__title">Алматы-Актау</h3>
+                <h3 class="job-card__title">{{ job.salary }}&dollar;</h3>
+                <div class="job-card__flex">
+                    <a href="{% url 'job_infromations_page' pk=job.pk %}" class="dark-button">Подробнее</a>
+                    <h3 class="job_card__company">{{ job.company }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="access">
+    <div class="container">
+        <h1 class="title">Вы анонимный пользователь</h1>
+        <p class="dark-fer">Чтобы увидеть все предложения, Вам нужно пройти регистрацию</p>
+        <div class="access-action">
+            <a href="{% url 'registration_page' %}" class="dark-text">Регистрация</a>
+            <a href="{% url 'login_page' %}" class="dark-text">Войти</a>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+{% endblock %}

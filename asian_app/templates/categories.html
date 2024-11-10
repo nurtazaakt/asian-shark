@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Все Города{% endblock %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<section class="categories">
+    <div class="container">
+        <h2 class="title">Все Города</h2>
+        <div class="categories-list">
+            <a href="{% url 'jobs_page' %}" class="category-item">Все Предложения</a>
+            {% for category in categories %}
+            <a href="{% url 'Joe_Baiden_page' slug=category.slug %}" class="category-item">{{ category.name }}</a>
+        {% endfor %}  
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="access">
+    <div class="container">
+        <h1 class="title">Вы анонимный пользователь</h1>
+        <p class="dark-fer">Чтобы увидеть все города, Вам нужно пройти регистрацию</p>
+        <div class="access-action">
+            <a href="{% url 'registration_page' %}" class="dark-text">Регистрация</a>
+            <a href="{% url 'login_page' %}" class="dark-text">Войти</a>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+{% endblock %}
